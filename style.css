@@ -447,10 +447,98 @@ footer {
 .delay-1 { transition-delay: 0.2s; }
 
 /* RESPONSIVE */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--text-color);
+}
+
 @media (max-width: 768px) {
+    /* Menu Toggle Animation */
+    .menu-toggle {
+        display: block;
+    }
+    
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile Navigation */
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: rgba(5, 5, 5, 0.95);
+        width: 100%;
+        height: calc(100vh - 70px); /* Full height minus header */
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding-top: 4rem;
+        gap: 3rem;
+        z-index: 99;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    /* Typography & Layout */
     h1 { font-size: 3rem; }
-    .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+    
+    .about-text h2, .section-title, .contact-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    
     .cursor-dot { display: none; } /* Desativa cursor custom no mobile */
     body { cursor: auto; }
-    .nav-links { display: none; } /* Simples para demo */
+    
+    .section-padding { padding: 5rem 0; }
+    
+    .hero-content { padding: 0 1rem; }
+    
+    .project-card:hover img {
+        transform: none; /* Desativa zoom no mobile para performance */
+    }
+    
+    .contact-wrapper { padding: 2rem 1rem; }
+    
+    .contact-phone { font-size: 1.1rem; }
+    
+    /* Adjustments for About Section */
+    .card-glass {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .about-visual { height: 300px; }
 }

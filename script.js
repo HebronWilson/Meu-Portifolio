@@ -29,7 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. SCROLL REVEAL ANIMATION (Intersection Observer)
+    // 2. MOBILE MENU TOGGLE
+    const menuToggle = document.querySelector('#mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('is-active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('is-active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
+    // 3. SCROLL REVEAL ANIMATION (Intersection Observer)
     const revealElements = document.querySelectorAll('.reveal-text, .reveal-card');
 
     const revealOptions = {
@@ -50,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealOnScroll.observe(el);
     });
 
-    // 3. SMOOTH SCROLL PARA LINKS INTERNOS
+    // 4. SMOOTH SCROLL PARA LINKS INTERNOS
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
